@@ -9,13 +9,14 @@ RSpec.describe 'DebugExceptionsJson', type: :request do
     context 'with no exception' do
       it 'successed' do
         get '/hello', params, env
-        expect(response).to be_success
+        expect(response).to have_http_status(200)
       end
     end
 
     context 'with exception raised' do
       it 'responses error json' do
         get '/error', params, env
+        expect(response).to have_http_status(500)
         expect(response.body).to be_json_as(
           message: 'test error',
           backtrace: Array,
@@ -30,13 +31,14 @@ RSpec.describe 'DebugExceptionsJson', type: :request do
     context 'with no exception' do
       it 'successed' do
         get '/hello', params, env
-        expect(response).to be_success
+        expect(response).to have_http_status(200)
       end
     end
 
     context 'with exception raised' do
       it 'responses error json' do
         get '/error', params, env
+        expect(response).to have_http_status(500)
         expect(response.body).not_to be_json
       end
     end
