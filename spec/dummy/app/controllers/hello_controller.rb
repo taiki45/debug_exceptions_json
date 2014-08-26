@@ -7,7 +7,7 @@ class HelloController < ApplicationController
   end
 
   def error
-    raise StandardError, 'test error'
+    raise TestError, 'test error'
   end
 
   class TestError < StandardError; end

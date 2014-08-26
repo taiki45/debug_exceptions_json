@@ -5,7 +5,7 @@ A Rack application for debugging in API server on Rails. Debug exception with js
 
 ## Requirements
 - Ruby 2.0.0 or greater.
-- Rails 3.2 or greater, Sinatra or another Rack-based application.
+- Rails 3.2 or greater.
 
 ## Getting Started
 Add the following line to your application's Gemfile:
@@ -28,8 +28,22 @@ All done. Your request with `Accept: application/json` will be automatically sho
 
 ## Tips
 ### Your own app for debugging
-You can specify aribitary logic for debugging. Give a proc to `DebugExceptionsJson`.
-See code in `spec/dummy/config/application.rb`.
+You can specify aribitary logic for debugging. Give a proc to `DebugExceptionsJson` like:
+
+```ruby
+config.middleware.insert_after(
+  ActionDispatch::DebugExceptions,
+  DebugExceptionsJson,
+  -> (e, env) {
+    [
+      '500',
+      { 'Content-Type' => 'application/json' },
+      [{ message: e.message, backtrace: e.backtrace, }.to_json],
+    ]
+  }
+)
+```
+
 
 ### When exception will apper?
 The condition is almost same as ActionDispatch::DebugExceptions.

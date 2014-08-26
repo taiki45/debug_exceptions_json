@@ -6,6 +6,7 @@ class DebugExceptionsJson
       [
         {
           error: {
+            exception_class: exception.class.name,
             message: exception.message,
             backtrace: exception.backtrace,
           },
