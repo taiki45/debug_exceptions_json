@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = DebugExceptionsJson::VERSION
   s.authors     = ["Taiki Ono"]
   s.email       = ["taiks.4559@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/taiki45/debug_exceptions_json"
   s.summary     = "Show detail exception as json"
-  s.description = ""
+  s.description = "A Rack application for debugging in API server on Rails. Debug exception with json."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
