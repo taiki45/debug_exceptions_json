@@ -26,6 +26,36 @@ config.middleware.insert_after ActionDispatch::DebugExceptions, DebugExceptionsJ
 
 All done. Your request with `Accept: application/json` will be automatically shown exception as json.
 
+## Rspec matchers
+DebugExceptionsJson provides rspec matchers to handle unexpectable server error in testing.
+By using these matchers, you can dump server errors.
+
+Example:
+
+```ruby
+it 'returens 200' do
+  get '/success', params, env
+  expect(response).to have_status_code(200)
+
+  # Other matching goes here...
+end
+```
+
+When something went wrong in `/success`, `have_status_code` matcher dumps server error in failure message like this.
+
+```
+Failure/Error: expect(response).to have_status_code(200)
+  expected the response to have status code 200 but it was 500.
+
+  ServerError:
+    exception class:
+      HelloController::TestError
+    message:
+      test error
+    short_backtrace:
+      <backtrace is here>
+```
+
 ## Tips
 ### Your own app for debugging
 You can specify aribitary logic for debugging. Give a proc to `DebugExceptionsJson` like:
