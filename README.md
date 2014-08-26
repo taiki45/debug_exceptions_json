@@ -28,11 +28,8 @@ All done. Your request with `Accept: application/json` will be automatically sho
 
 ## Tips
 ### Your own app for debugging
-You can specify aribitary logic for debugging. Give a proc to `DebugExceptionsJson` like:
-
-```ruby
-config.middleware.insert_after ActionDispatch::DebugExceptions, DebugExceptionsJson, -> (exception, env) { 'error' }
-```
+You can specify aribitary logic for debugging. Give a proc to `DebugExceptionsJson`.
+See code in `spec/dummy/config/application.rb`.
 
 ### When exception will apper?
 The condition is almost same as ActionDispatch::DebugExceptions.

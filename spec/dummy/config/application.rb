@@ -19,7 +19,18 @@ module Dummy
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.middleware.insert_after ActionDispatch::DebugExceptions, DebugExceptionsJson
+    config.middleware.insert_after(
+      ActionDispatch::DebugExceptions,
+      DebugExceptionsJson,
+      -> (e, env) {
+        [
+          '500',
+          { 'Content-Type' => 'application/json' },
+          [{ message: e.message, backtrace: e.backtrace, }.to_json],
+        ]
+      }
+    )
+
   end
 end
 

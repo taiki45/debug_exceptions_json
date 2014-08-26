@@ -17,10 +17,8 @@ RSpec.describe 'DebugExceptionsJson', type: :request do
       it 'responses error json' do
         get '/error', params, env
         expect(response.body).to be_json_as(
-          error: {
-            message: 'test error',
-            backtrace: Array,
-          }
+          message: 'test error',
+          backtrace: Array,
         )
       end
     end
