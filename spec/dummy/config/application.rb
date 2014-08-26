@@ -19,7 +19,7 @@ module Dummy
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.middleware.insert_after ActionDispatch::DebugExceptions, DebugExceptionsJson::RackApp
+    config.middleware.insert_after ActionDispatch::DebugExceptions, DebugExceptionsJson
   end
 end
 

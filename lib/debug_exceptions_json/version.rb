@@ -1,3 +1,3 @@
-module DebugExceptionsJson
-  VERSION = "0.0.1"
+class DebugExceptionsJson
+  VERSION = '0.0.1'
 end
