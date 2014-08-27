@@ -31,11 +31,15 @@ DebugExceptionsJson provides RSpec matcher,`have_status_code`, to handle unexpec
 By using this matcher, you can dump server error like:
 
 ```ruby
-it 'returens 200' do
-  get '/success', params, env
-  expect(response).to have_status_code(200)
+require 'debug_exceptions_json/rspec/matchers'
 
-  # Other matching goes here...
+RSpec.describe 'something' do
+  it 'returens 200' do
+    get '/success', params, env
+    expect(response).to have_status_code(200)
+
+    # Other matching goes here...
+  end
 end
 ```
 
