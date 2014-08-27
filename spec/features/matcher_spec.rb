@@ -2,8 +2,8 @@ require 'spec_helper'
 
 require 'debug_exceptions_json/rspec/matchers'
 
-RSpec.describe DebugExceptionsJson::Rspec::Matchers, type: :request do
-  include DebugExceptionsJson::Rspec::Matchers
+RSpec.describe DebugExceptionsJson::RSpec::Matchers, type: :request do
+  include DebugExceptionsJson::RSpec::Matchers
 
   let(:params) { {} }
 

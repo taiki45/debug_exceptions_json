@@ -1,7 +1,7 @@
 require 'rspec'
 
 class DebugExceptionsJson
-  module Rspec
+  module RSpec
     module Matchers
       # TODO: Accept symbol version
       def have_status_code(expected_code)
