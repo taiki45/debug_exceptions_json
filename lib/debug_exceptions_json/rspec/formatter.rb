@@ -31,6 +31,7 @@ class DebugExceptionsJson
 
       private
 
+      # TODO: colorize server error dump?
       def error_to_dump_message(error)
 <<-EOM
 
