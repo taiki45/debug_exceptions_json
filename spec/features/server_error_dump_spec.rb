@@ -1,8 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe DebugExceptionsJson::RSpec::Matchers, type: :request do
-  include DebugExceptionsJson::RSpec::Matchers
-
+RSpec.describe 'server error dump', type: :request do
   let(:params) { {} }
 
   context 'when client accepts application/json' do
@@ -11,7 +9,7 @@ RSpec.describe DebugExceptionsJson::RSpec::Matchers, type: :request do
     context 'with no exception' do
       it 'successed' do
         get '/hello', params, env
-        expect(response).to have_status_code(200)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -20,7 +18,7 @@ RSpec.describe DebugExceptionsJson::RSpec::Matchers, type: :request do
         get '/error', params, env
 
         # Turn on exception dumping by set status code as 200
-        expect(response).to have_status_code(200)
+        expect(response).to have_http_status(200)
       end
     end
   end
@@ -31,14 +29,14 @@ RSpec.describe DebugExceptionsJson::RSpec::Matchers, type: :request do
     context 'with no exception' do
       it 'successed' do
         get '/hello', params, env
-        expect(response).to have_status_code(200)
+        expect(response).to have_http_status(200)
       end
     end
 
     context 'with exception raised' do
       it 'responses error json' do
         get '/error', params, env
-        expect(response).to have_status_code(500)
+        expect(response).to have_http_status(500)
       end
     end
   end
