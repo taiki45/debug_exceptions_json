@@ -17,7 +17,7 @@ class DebugExceptionsJson
           message = "expected the response to have status code #{@expected} but it was #{@actual}."
 
           if dump_exception?(@response)
-            [message, dumped_exception].join("\n\n")
+            message
           else
             message
           end

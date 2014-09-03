@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-require 'debug_exceptions_json/rspec/matchers'
-
 RSpec.describe DebugExceptionsJson::RSpec::Matchers, type: :request do
   include DebugExceptionsJson::RSpec::Matchers
 
@@ -22,7 +20,7 @@ RSpec.describe DebugExceptionsJson::RSpec::Matchers, type: :request do
         get '/error', params, env
 
         # Turn on exception dumping by set status code as 200
-        expect(response).to have_status_code(500)
+        expect(response).to have_status_code(200)
       end
     end
   end

@@ -3,6 +3,7 @@ require 'pry-rails'
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require 'rspec/rails'
+require 'debug_exceptions_json/rspec'
 
 Rails.backtrace_cleaner.remove_silencers!
 
@@ -35,4 +36,6 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include RSpec::JsonMatcher
+  config.include DebugExceptionsJson::RSpec::Hook
+  config.default_formatter = DebugExceptionsJson::RSpec::Formatter
 end
