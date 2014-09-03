@@ -26,37 +26,41 @@ config.middleware.insert_after ActionDispatch::DebugExceptions, DebugExceptionsJ
 
 All done. Your request with `Accept: application/json` will be automatically shown exception as json.
 
-## RSpec matchers
-DebugExceptionsJson provides RSpec matcher,`have_status_code`, to handle unexpectable server error in testing.
-By using this matcher, you can dump server error like:
+## RSpec integration
+DebugExceptionsJson provides RSpec hook and formatter to dump unexpectable server error in testing.
+
+Setup:
 
 ```ruby
-require 'debug_exceptions_json/rspec/matchers'
+# In spec_helper.rb
+require 'debug_exceptions_json/rspec'
 
-RSpec.describe 'something' do
-  it 'returens 200' do
-    get '/success', params, env
-    expect(response).to have_status_code(200)
-
-    # Other matching goes here...
-  end
+RSpec.configure do |config|
+  config.include DebugExceptionsJson::RSpec::Hook
+  config.default_formatter = DebugExceptionsJson::RSpec::Formatter
 end
 ```
 
-When something went wrong in `/success`, `have_status_code` matcher dumps server error in failure message like this.
+Dump like:
 
 ```
-Failure/Error: expect(response).to have_status_code(200)
-  expected the response to have status code 200 but it was 500.
+Failures:
 
-  ServerError:
-    exception class:
-      HelloController::TestError
-    message:
-      test error
-    short_backtrace:
-      <backtrace is here>
+  1) server error dump when client accepts application/json with exception raised responses error json
+     Failure/Error: expect(response).to have_http_status(200)
+       expected the response to have status code 200 but it was 500
+     # ./spec/features/server_error_dump_spec.rb:21:in `block (4 levels) in <top (required)>'
+
+     ServerErrorDump:
+       exception class:
+         HelloController::TestError
+       message:
+         test error
+       short_backtrace:
+         <backtrace is here>
 ```
+
+Notice: server error dump only appers when you use default debug logic.
 
 ## Tips
 ### Your own app for debugging
