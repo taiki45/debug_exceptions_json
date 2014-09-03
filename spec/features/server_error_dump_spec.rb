@@ -18,7 +18,7 @@ RSpec.describe 'server error dump', type: :request do
         get '/error', params, env
 
         # Turn on exception dumping by set status code as 200
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(500)
       end
     end
   end
