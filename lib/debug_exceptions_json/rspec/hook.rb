@@ -6,11 +6,11 @@ class DebugExceptionsJson
           after do |example|
             # For RSpec2 compatibility
             if ::RSpec::Core::Version::STRING.split('.').first == "3"
-              example.metadata[:response] = example.instance_exec { response }
+              example.metadata[:response] = example.instance_exec { respond_to?(:response) && response }
             else
               # RSpec2 passes ExampleGroup::Nested_N
               nested = example
-              nested.example.metadata[:response] = nested.example.instance_eval { response }
+              nested.example.metadata[:response] = nested.example.instance_eval { respond_to?(:response) && response }
             end
           end
         end

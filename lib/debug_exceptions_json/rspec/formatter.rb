@@ -31,7 +31,7 @@ class DebugExceptionsJson
           formatted << failure.fully_formatted(index.next, colorizer)
           response = failure.example.metadata[:response]
 
-          if response.server_error?
+          if response && response.server_error?
             begin
               e = JSON(response.body)['error']
             rescue JSON::ParserError
@@ -49,6 +49,7 @@ class DebugExceptionsJson
 
       def dump_failures_2
         return if failed_examples.empty?
+
         output.puts
         output.puts "Failures:"
         failed_examples.each_with_index do |example, index|
@@ -58,7 +59,7 @@ class DebugExceptionsJson
 
           response = example.metadata[:response]
 
-          if response.server_error?
+          if response && response.server_error?
             begin
               e = JSON(response.body)['error']
             rescue JSON::ParserError
