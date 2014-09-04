@@ -1,3 +1,6 @@
+## 0.2.2
+- Adapt test case without response object (i.e. model spec).
+
 ## 0.2.1
 - Add compatibility to RSpec2.
 
