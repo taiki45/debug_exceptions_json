@@ -98,3 +98,16 @@ The condition is almost same as ActionDispatch::DebugExceptions.
 - `env['HTTP_ACCEPT'] matches with `application/json`.
 
 If you are working in non-Rails app, please set these env variable properly.
+
+
+## Developement Tips
+### Switch RSpec version
+```
+# Use RSpec2
+rm Gemfile.lock
+USE_RSPEC2=1 bundle update
+
+# Use RSpec3
+rm Gemfile.lock
+bundle update
+```
