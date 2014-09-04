@@ -55,4 +55,10 @@ RSpec.describe 'server error dump', type: :request do
       end
     end
   end
+
+  context 'without response objext' do
+    it 'does not raise NoMethodError' do
+      expect(true).to eq(true)
+    end
+  end
 end
