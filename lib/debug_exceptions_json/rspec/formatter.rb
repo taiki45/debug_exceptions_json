@@ -1,3 +1,6 @@
+# For RSpec2 compatibility
+require 'rspec/core/formatters/progress_formatter'
+
 class DebugExceptionsJson
   module RSpec
     class Formatter < ::RSpec::Core::Formatters::ProgressFormatter
