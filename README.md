@@ -43,7 +43,7 @@ RSpec.configure do |config|
   config.default_formatter = DebugExceptionsJson::RSpec::Formatter
 end
 
-# If you work with RSpec2
+# If you are working with RSpec2
 RSpec.configure do |config|
   config.include DebugExceptionsJson::RSpec::Hook
   config.formatter = DebugExceptionsJson::RSpec::Formatter
