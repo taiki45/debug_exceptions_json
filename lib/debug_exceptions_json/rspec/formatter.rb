@@ -1,9 +1,27 @@
+# For RSpec2 compatibility
+require 'rspec/core/formatters/progress_formatter'
+
 class DebugExceptionsJson
   module RSpec
     class Formatter < ::RSpec::Core::Formatters::ProgressFormatter
-      ::RSpec::Core::Formatters.register self, :dump_failures
+      # For RSpec2 compatibility
+      RSPEC3 = ::RSpec::Core::Version::STRING.split('.').first == "3"
 
-      def dump_failures(notification)
+      if RSPEC3
+        ::RSpec::Core::Formatters.register self, :dump_failures
+      end
+
+      def dump_failures(notification = nil)
+        if RSPEC3
+          dump_failures_3(notification)
+        else
+          dump_failures_2
+        end
+      end
+
+      private
+
+      def dump_failures_3(notification)
         return if notification.failure_notifications.empty?
 
         colorizer = ::RSpec::Core::Formatters::ConsoleCodes
@@ -29,7 +47,30 @@ class DebugExceptionsJson
         output.puts formatted
       end
 
-      private
+      def dump_failures_2
+        return if failed_examples.empty?
+        output.puts
+        output.puts "Failures:"
+        failed_examples.each_with_index do |example, index|
+          output.puts
+          pending_fixed?(example) ? dump_pending_fixed(example, index) : dump_failure(example, index)
+          dump_backtrace(example)
+
+          response = example.metadata[:response]
+
+          if response.server_error?
+            begin
+              e = JSON(response.body)['error']
+            rescue JSON::ParserError
+              e = {}
+            end
+
+            if e['exception_class'] && e['message'] && e['backtrace']
+              output.puts error_to_dump_message(e)
+            end
+          end
+        end
+      end
 
       # TODO: colorize server error dump?
       def error_to_dump_message(error)

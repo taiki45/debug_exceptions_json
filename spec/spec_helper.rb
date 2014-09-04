@@ -33,9 +33,18 @@ RSpec.configure do |config|
   #
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
-  config.infer_spec_type_from_file_location!
+  if ::RSpec::Core::Version::STRING.split('.').first == "3"
+    config.infer_spec_type_from_file_location!
+  end
 
   config.include RSpec::JsonMatcher
+
   config.include DebugExceptionsJson::RSpec::Hook
-  config.default_formatter = DebugExceptionsJson::RSpec::Formatter
+
+
+  if ::RSpec::Core::Version::STRING.split('.').first == "3"
+    config.default_formatter = DebugExceptionsJson::RSpec::Formatter
+  else
+    config.formatter = DebugExceptionsJson::RSpec::Formatter
+  end
 end

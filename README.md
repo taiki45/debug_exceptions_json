@@ -5,7 +5,10 @@ A Rack application for debugging in API server on Rails. Debug exception with js
 
 ## Requirements
 - Ruby 2.0.0 or greater.
+
+## Compatibilities
 - Rails 3.2 or greater.
+- RSpec 2.14.1 or greater.
 
 ## Getting Started
 Add the following line to your application's Gemfile:
@@ -38,6 +41,12 @@ require 'debug_exceptions_json/rspec'
 RSpec.configure do |config|
   config.include DebugExceptionsJson::RSpec::Hook
   config.default_formatter = DebugExceptionsJson::RSpec::Formatter
+end
+
+# If you work with RSpec2
+RSpec.configure do |config|
+  config.include DebugExceptionsJson::RSpec::Hook
+  config.formatter = DebugExceptionsJson::RSpec::Formatter
 end
 ```
 
@@ -89,3 +98,16 @@ The condition is almost same as ActionDispatch::DebugExceptions.
 - `env['HTTP_ACCEPT'] matches with `application/json`.
 
 If you are working in non-Rails app, please set these env variable properly.
+
+
+## Developement Tips
+### Switch RSpec version
+```
+# Use RSpec2
+rm Gemfile.lock
+USE_RSPEC2=1 bundle update
+
+# Use RSpec3
+rm Gemfile.lock
+bundle update
+```
