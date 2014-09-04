@@ -1,7 +1,10 @@
 class DebugExceptionsJson
   module RSpec
     class Formatter < ::RSpec::Core::Formatters::ProgressFormatter
-      ::RSpec::Core::Formatters.register self, :dump_failures
+      # For RSpec2 compatibility
+      if ::RSpec::Core::Version::STRING.split('.').first == "3"
+        ::RSpec::Core::Formatters.register self, :dump_failures
+      end
 
       def dump_failures(notification)
         return if notification.failure_notifications.empty?
