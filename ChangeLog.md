@@ -1,3 +1,7 @@
+## 0.2.3
+- Fix duplicated output bug with RSpec2.
+- Don't break exception logging.
+
 ## 0.2.2
 - Adapt test case without response object (i.e. model spec).
 
