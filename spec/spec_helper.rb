@@ -45,6 +45,6 @@ RSpec.configure do |config|
   if ::RSpec::Core::Version::STRING.split('.').first == "3"
     config.default_formatter = DebugExceptionsJson::RSpec::Formatter
   else
-    config.formatter = DebugExceptionsJson::RSpec::Formatter
+    config.formatter = DebugExceptionsJson::RSpec::Formatter if config.formatters.empty?
   end
 end
