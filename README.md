@@ -46,7 +46,7 @@ end
 # If you are working with RSpec2
 RSpec.configure do |config|
   config.include DebugExceptionsJson::RSpec::Hook
-  config.formatter = DebugExceptionsJson::RSpec::Formatter
+  config.formatter = DebugExceptionsJson::RSpec::Formatter if config.formatters.empty?
 end
 ```
 
