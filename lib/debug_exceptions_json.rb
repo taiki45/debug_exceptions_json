@@ -51,7 +51,6 @@ class DebugExceptionsJson
   end
 
   def log_error(exception, env)
-    binding.pry
     logger = logger(env)
     return unless logger
 
