@@ -1,3 +1,6 @@
+## 0.2.4
+- Remove `binding.pry`... :scream:
+
 ## 0.2.3
 - Fix duplicated output bug with RSpec2.
 - Don't break exception logging.
