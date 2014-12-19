@@ -94,7 +94,7 @@ config.middleware.insert_after(
 The condition is almost same as ActionDispatch::DebugExceptions.
 
 - `env['action_dispatch.show_exceptions']` is set as `true`. This is linked with `config.action_dispatch.show_exceptions` in Rails.
-- `env['action_dispatch.show_detailed_exceptions']` is set as `true`. This is liked with `config.consider_all_requests_local` in Rails.
+- `env['action_dispatch.show_detailed_exceptions']` is set as `true`. This is linked with `config.consider_all_requests_local` in Rails.
 - `env['HTTP_ACCEPT'] matches with `application/json`.
 
 If you are working in non-Rails app, please set these env variable properly.
