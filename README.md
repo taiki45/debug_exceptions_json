@@ -17,10 +17,10 @@ Add the following line to your application's Gemfile:
 gem 'debug_exceptions_json'
 ```
 
-Use `DebugExceptionsJson` Rack app in your developement environments.
+Use `DebugExceptionsJson` Rack app in your development environments.
 
 ```ruby
-# config/environments/developement.rb
+# config/environments/development.rb
 config.middleware.insert_after ActionDispatch::DebugExceptions, DebugExceptionsJson
 
 # config/environments/test.rb
@@ -100,7 +100,7 @@ The condition is almost same as ActionDispatch::DebugExceptions.
 If you are working in non-Rails app, please set these env variable properly.
 
 
-## Developement Tips
+## Development Tips
 ### Switch RSpec version
 ```
 # Use RSpec2
