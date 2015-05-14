@@ -1,3 +1,6 @@
+## 0.2.5
+- Support RSpec 2.99.
+
 ## 0.2.4
 - Remove `binding.pry`... :scream:
 
