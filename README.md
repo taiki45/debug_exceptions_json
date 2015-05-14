@@ -107,6 +107,10 @@ If you are working in non-Rails app, please set these env variable properly.
 rm Gemfile.lock
 USE_RSPEC2=1 bundle update
 
+# Use RSpec2.99
+rm Gemfile.lock
+USE_RSPEC299=1 bundle update
+
 # Use RSpec3
 rm Gemfile.lock
 bundle update
