@@ -1,3 +1,6 @@
+## 0.2.6
+- Fix nil reference for the case of empty error. #9
+
 ## 0.2.5
 - Support RSpec 2.99.
 
