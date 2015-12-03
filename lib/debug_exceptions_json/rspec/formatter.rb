@@ -38,7 +38,7 @@ class DebugExceptionsJson
               e = {}
             end
 
-            if e['exception_class'] && e['message'] && e['backtrace']
+            if e && e['exception_class'] && e['message'] && e['backtrace']
               formatted << error_to_dump_message(e)
             end
           end
